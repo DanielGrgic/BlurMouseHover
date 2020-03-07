@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Add Blur Effect On MouseOver</title>
+
+		<style>
+			.blur {
+				margin:50px;
+				width:612px;
+				height:607px;
+				position:relative;
+			}
+			.blur:before,
+			.blur:after{
+				content:"";
+				position:absolute;
+				top:0;
+				left:0;
+				right:0;
+				bottom:0;
+				background:var(--i);
+			}			
+			.blur:after {
+				filter:blur(5px);
+			  	clip-path: circle(60px at var(--x,-40px) var(--y,-40px));
+			}
+		</style>	
+	</head>
+	<body>
+	
+
+	<div class="blur" style="--i:url('./back.jpg')">
+	</div>
+
+	<script>
+		var image =document.querySelector('.blur');
+		var p= image.getBoundingClientRect();
+
+		document.body.onmousemove = function(e) {
+			image.style.setProperty('--x',(e.clientX-p.top)+'px');
+			image.style.setProperty('--y',(e.clientY-p.left)+'px');
+		}
+	</script>
+	</body>
+</html>
